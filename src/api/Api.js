@@ -12,11 +12,19 @@ export function api_fetchAccounts() {
     return axios.get("http://www.mocky.io/v2/5c17e1872f00005400af0e26");
 }
 
+export function api_fetchAccountsForDashboard() {
+    return axios.get("http://www.mocky.io/v2/5c17e1872f00005400af0e26");
+}
+
 export function api_fetchUsers() {
     // console.log('api')
     // return axios.get("https://jsonplaceholder.typicode.com/users");
     return axios.get("http://www.mocky.io/v2/5c0e93f82e00004831043f73");
 
+}
+
+export function api_fetchUsersForDashboard() {
+    return axios.get("http://www.mocky.io/v2/5c5b2a563900006200e05640");
 }
 
 export function api_fetchHistoryForAccount(accountId) {

@@ -9,7 +9,9 @@ import { api_fetchUsers,
         api_deleteAccount,
         api_addUser,
         api_fetchHistoryForAccount,
-        api_fetchHistoryForUser
+        api_fetchHistoryForUser,
+        api_fetchUsersForDashboard,
+        api_fetchAccountsForDashboard
 } from '../api/Api';
 
 import {fetchAccountsSuccess, 
@@ -34,7 +36,11 @@ import {fetchAccountsSuccess,
         fetchHistoryForAccount_faild,
         fetchHistoryForAccount_success,
         fetchHistoryForUser_faild,
-        fetchHistoryForUser_success
+        fetchHistoryForUser_success,
+        fetchUsersForDashboard_error,
+        fetchUsersForDashboard_success,
+        fetchAccountsForDashboard_error,
+        fetchAccountsForDashboard_success
 } from '../actions'
 
 export function* editAccountSaga(action) {
@@ -59,6 +65,19 @@ export function* fetchUsersForSelectSaga() {
         return yield put(fetchUsersForSelectSuccess(response.data))
     } else {
         return yield put(fetchUsersForSelectFaild('error'))
+    }
+}
+
+
+export function* fetchUsersForDashboardSaga() {
+    const response = yield call(api_fetchUsersForDashboard);
+    if(!response || !response.data) {
+        return yield put(fetchUsersForDashboard_error("Internal server error"))
+    }
+    if(response.status === 200){
+        return yield put(fetchUsersForDashboard_success(response.data))
+    } else {
+        return yield put(fetchUsersForDashboard_error('error'))
     }
 }
 
@@ -151,6 +170,19 @@ export function* fetchAccounts() {
       }   
 }
 
+
+export function* fetchAccountsForDashboardSaga() {
+    const response = yield call(api_fetchAccountsForDashboard);
+    if(!response || !response.data){
+        return yield put(fetchAccountsForDashboard_error("Internal server error"))
+    }
+    if(response.status === 200){
+        return yield put(fetchAccountsForDashboard_success(response.data))
+    } else {
+        return yield put(fetchAccountsForDashboard_error('error'))
+    }
+}
+
 export function* fetchHistoryForAccountSaga(action) {
     const response = yield call(api_fetchHistoryForAccount, action.payload)
     // console.log('SAGA RESPONSE: ', response.data)
@@ -223,5 +255,7 @@ export function* watchFetchAccounts() {
     yield takeEvery("EDIT_ACCOUNT", editAccountSaga);
     yield takeEvery("ADD_USER", addUserSaga);    
     yield takeEvery("FETCH_HISTORY_FOR_ACCOUNT", fetchHistoryForAccountSaga),
-    yield takeEvery("FETCH_HISTORY_FOR_USER", fetchHistoryForUserSaga)
+    yield takeEvery("FETCH_HISTORY_FOR_USER", fetchHistoryForUserSaga),
+    yield takeEvery("FETCH_USERS_FOR_DASHBOARD", fetchUsersForDashboardSaga),
+    yield takeEvery("FETCH_ACCOUNTS_FOR_DASHBOARD", fetchAccountsForDashboardSaga)
 }

@@ -13,7 +13,7 @@ class MainApp extends React.Component {
     render() {
         return(
             <Router>
-                <div>
+                <div className="container-fluid">
                    <Route path='/login' component={Login} />
                    <PrivateRoute path='/' component={App} />
                 </div>

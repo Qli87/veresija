@@ -10,7 +10,6 @@ import {BrowserRouter as Router, Route, Link, NavLink, withRouter} from 'react-r
 import GetAccounts from './containers/GetAccounts'
 import GetUsers from './containers/GetUsers'
 import UserAdd from './components/UserAdd'
-import Dashboard from './components/Dashboard'
 // import AccountAdd from './components/AccountAdd'
 import GetUsersForAccount from './containers/GetUsersForAccount'
 import GetUserDetails from './containers/GetUserDetails'
@@ -24,14 +23,17 @@ import AddDebtPayment from './containers/AddDebtPayment';
 import HistoryAccount from './containers/HistoryAccount';
 import HistoryUser from './containers/HisotryUser';
 import Login from './components/Login';
+import DashboardContainer from './containers/DashboardContainer';
 
+import Sidebar from './Sidebar'
 import Clock from 'react-live-clock';
+
 
 const routes = [
   {
     path: "/",
     exact: true,
-    main: () => <div> <Dashboard /> </div>
+    main: () => <div> <DashboardContainer /> </div>
   },
   // {
   //   path: "/login",
@@ -111,67 +113,10 @@ class App extends Component {
     <Clock format={'HH:mm:ss'} ticking={true} timezone={'US/Pacific'} />
     return (
       <Router>
-       {/* {
-
-        this.state.isLogged 
-        ? */}
-
         <div className="container-fluid" style={{'backgroundColor': '#f1f1f1', 'height':'100%', 'width':'100%', 'minHeight':'100%', 'position': 'relative'}}>
           <div className="row" >
-
-            <div className="col-lg-3 col-sm-1">
-            {/* style={{'backgroundImage': 'url(assets/img/sb1.jpg)'}} */}
-              <div className="sidebar"  style={{'backgroundImage': 'url(assets/img/sb1.jpg)'}}
-                    data-color="purple" data-background-color="white" 
-                    data-image="../assets/img/sidebar-1.jpg">
-                    <div className="logo">
-                        {/* <a to="/" className="simple-text logo-normal">
-                            Veresija
-                        </a> */}
-                        <div style={{'textAlign':'center', 'fontStyle':'italic'}}>
-                          <Clock format={'HH:mm:ss'} ticking={true} />
-                        </div>
-                    </div>
-                    <div className="sidebar-wrapper">
-                        <ul className="nav" >
-                            <li >
-                                <NavLink to="/" exact={true} className="nav-link"  activeStyle={{ 'backgroundColor': '#9c27b0', 'color':'white', 'fontWeight':'bold'}}>
-                                    <i className="material-icons">dashboard</i>
-                                    <p>Pocetna</p>
-                                </NavLink>
-                            </li>
-                            <li >
-                                <NavLink to="/userList" exact={true} className="nav-link" activeStyle={{ 'backgroundColor': '#9c27b0', 'color':'white','fontWeight':'bold'}}>
-                                    <i className="material-icons">person</i>
-                                    <p>Lista korisnika</p>
-                                </NavLink>
-                            </li>
-
-                            <li className="nav-item ">
-                                <NavLink to="/userAdd" className="nav-link" activeStyle={{ 'backgroundColor': '#9c27b0', 'color':'white','fontWeight':'bold' }}>
-                                    <i className="material-icons">person_add</i>
-                                    <p>Dodaj korisnika</p>
-                                </NavLink>
-                            </li>
-
-                            <li className="nav-item ">
-                                <NavLink to="/accountList" className="nav-link" activeStyle={{ 'backgroundColor': '#9c27b0', 'color':'white','fontWeight':'bold' }}>
-                                    <i className="material-icons">note</i>
-                                    <p>Lista zaduzenja</p>
-                                </NavLink>
-                            </li>
-                            <li className="nav-item ">
-                                <NavLink to="/accountAdd" className="nav-link" activeStyle={{ 'backgroundColor': '#9c27b0', 'color':'white','fontWeight':'bold'}}>
-                                    <i className="material-icons">note_add</i>
-                                    <p>Dodaj zaduzenje</p>
-                                </NavLink>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div className="col-lg-8 col-sm-11 pt-3">
+            <Sidebar />
+            <div className="col-lg-9 offset-3 col-sm-11 pt-3">
               {/* <div className="col-lg-12 col-md-12 col-sm-11"> */}
                 {routes.map((route, index) => (
                   <Route
@@ -181,10 +126,8 @@ class App extends Component {
                     component={route.main}
                   />
                 ))}
-              {/* </div> */}
             </div>
           </div>
- 
 
            <div className="row">
               <div className="footer" 
@@ -194,16 +137,7 @@ class App extends Component {
            </div>
 
         </div>
-        {/* :
-        <Login />
-       }
- */}
-
-      
-
       </Router>
-
-
     );
   }
 }

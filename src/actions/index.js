@@ -30,7 +30,10 @@ export const FETCH_HISTORY_FOR_ACCOUNT_FAILD = "FETCH_HISTORY_FOR_ACCOUNT_ERROR"
 export const FETCH_HISTORY_FOR_USER = "FETCH_HISTORY_FOR_USER"
 export const FETCH_HISTORY_FOR_USER_SUCCESS = "FETCH_HISTORY_FOR_USER_SUCCESS"
 export const FETCH_HISTORY_FOR_USER_FAILD = "FETCH_HISTORY_FOR_USER_FAILD"
-
+export const FETCH_USERS_FOR_DASHBOARD_ERROR = "FETCH_USERS_FOR_DASHBOARD_ERROR"
+export const FETCH_ACCOUNTS_FOR_DASHBOARD = "FETCH_ACCOUNTS_FOR_DASHBOARD"
+export const FETCH_ACCOUNTS_FOR_DASHBOARD_SUCCESS = "FETCH_ACCOUNTS_FOR_DASHBOARD_SUCCESS"
+export const FETCH_ACCOUNTS_FOR_DASHBOARD_ERROR = "FETCH_ACCOUNTS_FOR_DASHBOARD_ERROR"
 
 export function fetchAccounts(accounts) {
     return{
@@ -75,6 +78,29 @@ export function fetchUsersFaild(error) {
         error
     }
 }
+
+export function fetchUsersForDashboard(users) {
+    console.log("FETCH_USERS_FOR_DASHBOARD")
+    return {
+        type: "FETCH_USERS_FOR_DASHBOARD",
+        payload: users
+    }
+}
+
+export function fetchUsersForDashboard_success(users) {
+    console.log("FETCH_USERS_FOR_DASHBOARD_SUCCESS")
+    return {
+        type: "FETCH_USERS_FOR_DASHBOARD_SUCCESS",
+        payload: users
+    }
+}
+
+export function fetchUsersForDashboard_error(error) {
+    return {
+        type: "FETCH_USERS_FOR_DASHBOARD",
+        payload: error
+    }
+}
     
 export function fetchUsersForAccount(users) {
     return {
@@ -87,6 +113,27 @@ export function fetchUserDetails(user) {
     return {
         type: "FETCH_USER_DETAILS",
         user
+    }
+}
+
+export function fetchAccountsForDashboard(accounts) {
+    return{
+        type: "FETCH_ACCOUNTS_FOR_DASHBOARD",
+        payload: accounts
+    }
+}
+
+export function fetchAccountsForDashboard_success(accounts) {
+    return{
+        type: "FETCH_ACCOUNTS_FOR_DASHBOARD_SUCCESS",
+        payload: accounts
+    }
+}
+
+export function fetchAccountsForDashboard_error(error) {
+    return{
+        type: "FETCH_ACCOUNTS_FOR_DASHBOARD_ERROR",
+        payload: error
     }
 }
 
@@ -312,6 +359,8 @@ export function fetchHistoryForUser_faild(error){
         payload: error
     }
 }
+
+
 
 
 // export function login(data) {

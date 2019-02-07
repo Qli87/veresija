@@ -25,18 +25,38 @@ export default function userReducer(state = initialState, action) {
                 error: action.error
             }
 
-
+        case "FETCH_USERS_FOR_DASHBOARD":
+            return {
+                ...state,
+                // users: state.users,
+                loading: true
+            }
+        case "FETCH_USERS_FOR_DASHBOARD_SUCCESS":
+            return {
+                ...state,
+                loading: false,
+                users: action.payload
+            }
+        case "FETCH_USERS_FOR_DASHBOARD_ERROR":
+            return {
+                ...state,
+                error: action.payload
+            }
         case "FETCH_USERS_FOR_SELECT":
         // console.log("FETCH_USERS_FOR_SELECT")
             return {
                 ...state,
-                loading: true   
+                loading: true,
+                users: action.payload   
             }
         case "FETCH_USERS_FOR_SELECT_SUCCESS":
         // console.log("FETCH_USERS_FOR_SELECT_SUCCESS", action.payload)
+            console.log('for select success: ', state)
+            console.log('for select success action: ', action)
             return{
                 ...state,
                 users: state.users,
+                // users: action.payload.users,
                 user: state.user,
                 userForSelect: action.payload   
             }
@@ -45,9 +65,6 @@ export default function userReducer(state = initialState, action) {
                 ...state,
                 error: action.payload
             }
-
-
-
         case 'FETCH_USER_DETAILS':
             const index = state.users.findIndex(item => item.id == action.user);
             if(index > -1){

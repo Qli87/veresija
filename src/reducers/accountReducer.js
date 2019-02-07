@@ -1,6 +1,7 @@
 
 const initialState = {
     loading: false,
+    account: [],
     accounts: []
 }
 
@@ -26,14 +27,31 @@ export default function accountReducer (state = initialState, action){
                 ...state,
                 error: action.error
             }
+        case "FETCH_ACCOUNTS_FOR_DASHBOARD":
+            return {
+                ...state,
+                loading: true
+            }
+        case "FETCH_ACCOUNTS_FOR_DASHBOARD_SUCCESS":
+            return {
+                ...state,
+                loading: false,
+                accounts: action.payload
+            }
+        case "FETCH_ACCOUNTS_FOR_DASHBOARD_ERROR":
+            return {
+                ...state,
+                error: action.payload
+            }
         case 'FETCH_ACCOUNT_DETAILS':
             const index = state.accounts.findIndex(item => item.id == action.account);
             if(index > -1) {
-                let account = state.accounts.find(item => item.id == action.account)
+                let accountF = state.accounts.find(item => item.id == action.account)
                 // console.log('account in reducer: ',account);
                 return{
                     // ...state,
-                    accounts: account
+                    accounts: state.accounts,
+                    account: accountF
                 }
             }
         case "EDIT_ACCOUNT":

@@ -1,14 +1,12 @@
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux';
+// import { bindActionCreators } from 'redux';
 import { fetchUsers } from '../actions';
-import UserList from '../components/UserList';
 import { deleteUser } from '../actions';
-import { editUser } from '../actions'
+import UserList from '../components/UserList';
 
 
 const mapStateToProps = state => 
-    (
-    { users: state.userReducer.users});
+    ({ users: state.userReducer.users});
 
 // const mapDispatchToProps = dispatch => bindActionCreators({fetchUsers}, dispatch);
 const mapDispatchToProps = dispatch => ({

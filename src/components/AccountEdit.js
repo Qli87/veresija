@@ -31,6 +31,7 @@ export default class AccountEdit extends React.Component {
     componentDidMount() {
         this.props.fetchAccountDetails(this.props.account_id.id);
         this.props.fetchUsersForSelect();
+        this.props.fetchUsersForDashboard();
     }
 
     componentWillReceiveProps(nextProps) {
