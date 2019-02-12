@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
+import ImageUploader from 'react-images-upload'
+
+
 class UserEdit extends React.Component {
     constructor(props) {
         super(props);
@@ -150,7 +153,7 @@ class UserEdit extends React.Component {
                                     </div>
                                 </div>
 
-                                <div className="row">
+                                <div className="row" style={{'paddingBottom':'60px'}}>
                                     <div className="col-lg-4 col-md-5 col-sm-6">
                                         <div className="form-group">
                                             <label className="bmd-label-floating">Telefon</label>
@@ -172,12 +175,26 @@ class UserEdit extends React.Component {
                                 </div>
 
                                 <div className="row">
-                                    <div className="col-lg-12 col-md-12 col-sm-12">
+                                    <div className="col-lg-6 col-md-12 col-sm-12">
                                         <div className="form-group">
                                             <label className="bmd-label-floating"> Adresa</label>
                                             <textarea className="form-control" rows="1" style={{'border': '0px'}}
                                             value={this.state.address || ""} 
                                             onChange={this.handleChangeAddress}></textarea>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-6">
+                                        <div className="form-group" style={{'marginTop':'-66px'}}>
+                                            <ImageUploader
+                                                withPreview={true}
+                                                withIcon={true}
+                                                buttonText='Choose images'
+                                                onChange={this.onDrop}
+                                                imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                                                maxFileSize={5242880}
+                                                singleImage={true}
+                                                label='Odaberite sliku za korisnika'
+                                            />
                                         </div>
                                     </div>
                                 </div>

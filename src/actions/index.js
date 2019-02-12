@@ -80,7 +80,6 @@ export function fetchUsersFaild(error) {
 }
 
 export function fetchUsersForDashboard(users) {
-    console.log("FETCH_USERS_FOR_DASHBOARD")
     return {
         type: "FETCH_USERS_FOR_DASHBOARD",
         payload: users
@@ -88,7 +87,6 @@ export function fetchUsersForDashboard(users) {
 }
 
 export function fetchUsersForDashboard_success(users) {
-    console.log("FETCH_USERS_FOR_DASHBOARD_SUCCESS")
     return {
         type: "FETCH_USERS_FOR_DASHBOARD_SUCCESS",
         payload: users
@@ -292,7 +290,7 @@ export function deleteAccount_success(id){
 }
 
 export function addUser(user){
-    console.log('add user')
+    // console.log('add user')
     console.log('user: ',user)
     return{
         type: "ADD_USER",
@@ -301,7 +299,7 @@ export function addUser(user){
 }
 
 export function addUser_success(user){
-    console.log('add user success')
+    // console.log('add user success')
     return{
         type: "ADD_USER_SUCCESS",
         payload: user
@@ -309,8 +307,7 @@ export function addUser_success(user){
 }
 
 export function addUser_error(error){
-    console.log('add user error')
-
+    // console.log('add user error')
     return{
         type: "ADD_USER_ERROR",
         payload: error

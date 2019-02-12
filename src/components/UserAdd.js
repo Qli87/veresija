@@ -65,8 +65,7 @@ export default class UserAdd extends React.Component {
     }
 
     render() {
-        console.log('state: ', this.state)
-        return(
+         return(
 
             <div className="container-fluid">
                 <div className="row">

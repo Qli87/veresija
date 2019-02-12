@@ -74,23 +74,8 @@ export default class UserDetails extends React.Component {
                                             </div>  
                                         </div>
                                     </div>
-
-                                    {/* <div className="row">
-                                        <div className="p-3">
-                                            <button type="submit" className="btn btn-primary pull-right">Sacuvaj</button>
-                                        </div>
-                                    </div> */}
-
                                 </form>
                             </div>
-
-                            {/* <div className="card-footer" style={{'borderTop': '1px solid lightgray'}}>
-                                <div className="stats">
-                                    <i className="material-icons text-danger">warning</i>
-                                    <a>Polja za ime, prezime i telefon su obavezna!</a>
-                                </div>
-                            </div> */}
-
                         </div>
                     </div>
                 </div>

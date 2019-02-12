@@ -13,7 +13,6 @@ export default class Dashboard extends React.Component {
     }
 
     render() {
-
         return (
         <div className="row">
             <div className="col-lg-3 col-md-6 col-sm-6">
@@ -116,9 +115,6 @@ export default class Dashboard extends React.Component {
                                 </tr>
                             </thead>
                             <tbody >
-                                {/* accountEdit je problem
-                                    provjeriti reducer?
-                                */}
                                 {this.props.accounts.map(account => {
                                     return <DashboardAccount
                                             key={account.id}
@@ -128,7 +124,7 @@ export default class Dashboard extends React.Component {
                                             totalDebit={account.totalDebit}
                                             user_id={account.userId}
                                             />
-                                })
+                                    })
                                 }
                             </tbody>
                         </table>

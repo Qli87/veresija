@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { fetchUsersForDashboard, fetchAccountsForDashboard } from '../actions';
 import Dashboard from '../components/Dashboard'
 
-const mapStateToProps = state => (console.log('users state: ', state),{
+const mapStateToProps = state => ({
     users: state.userReducer.users,
     accounts: state.accountReducer.accounts
 });

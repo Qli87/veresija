@@ -43,16 +43,12 @@ export default function userReducer(state = initialState, action) {
                 error: action.payload
             }
         case "FETCH_USERS_FOR_SELECT":
-        // console.log("FETCH_USERS_FOR_SELECT")
             return {
                 ...state,
                 loading: true,
                 users: action.payload   
             }
         case "FETCH_USERS_FOR_SELECT_SUCCESS":
-        // console.log("FETCH_USERS_FOR_SELECT_SUCCESS", action.payload)
-            console.log('for select success: ', state)
-            console.log('for select success action: ', action)
             return{
                 ...state,
                 users: state.users,
@@ -130,6 +126,7 @@ export default function userReducer(state = initialState, action) {
         console.log('ADD_USER')
             return {
                 ...state,
+                users: state.users,
                 saving: true
             }
         case "ADD_USER_SUCCESS":
