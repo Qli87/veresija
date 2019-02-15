@@ -7,7 +7,6 @@ const instance = axios.create({
 });
 
 export function api_fetchAccounts() {
-    console.log('api')
     // return axios.get("https://jsonplaceholder.typicode.com/posts");
     return axios.get("http://www.mocky.io/v2/5c17e1872f00005400af0e26");
 }

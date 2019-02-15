@@ -17,7 +17,8 @@ export default class UserList extends React.Component {
             },
             sortedData: [],
             filteredData: [],
-            user: []
+            user: [],
+            totalUsersForPG: []
         }
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
@@ -32,6 +33,7 @@ export default class UserList extends React.Component {
         // console.log('componentWillReceiveProps');
         // console.log('USER LIST NEXT PROPS: ',nextProps);
         let paginationUsers= [];
+        let totalUsersPG = [];
         if(nextProps.users.length > 0) {
             paginationUsers = nextProps.users.slice(this.state.activePage*this.state.usersPerPage-this.state.usersPerPage,
                 this.state.activePage*this.state.usersPerPage, []);
@@ -125,6 +127,7 @@ export default class UserList extends React.Component {
 
 
     render() {
+        // console.log("USER LIST PROPS: ", this.props)
         return (
             <div className="row">
                 <div className="card">

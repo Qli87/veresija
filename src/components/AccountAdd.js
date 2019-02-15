@@ -30,11 +30,12 @@ export default class AccoundAdd extends React.Component {
     }
 
     componentDidMount() {
-      this.props.fetchUsersForSelect()
+      this.props.fetchUsersForSelect();
+      this.props.fetchUsers();
     }
 
     componentWillReceiveProps(nextProps) {
-      console.log('next props: ',nextProps.usersForSelect);
+      // console.log('next props: ',nextProps.usersForSelect);
       let namesFromApi = nextProps.userForSelect.map(name => {return {value: name.userId, label: name.name}})
       this.setState({
         users: namesFromApi

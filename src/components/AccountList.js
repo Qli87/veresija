@@ -128,9 +128,6 @@ export default class AccountList extends React.Component {
     
 
     render() {
-
-        console.log('props: ', this.props)
-
         return (
             <div>
                 <div className="card">
