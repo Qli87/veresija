@@ -5,7 +5,7 @@ import {fetchAccountDetails} from '../actions'
 
 
 const mapStateToProps = state => ({
-        account: state.accountReducer.accounts
+        account: state.accountReducer.account
 })
 
 const mapDispatchToProps = dispatch => ({

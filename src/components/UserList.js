@@ -8,7 +8,7 @@ export default class UserList extends React.Component {
         super(props);
         this.state = {
             activePage : 1,
-            usersPerPage: 15,
+            usersPerPage: 5,
             numberOfPages : 5,
             showModal: false,
             sort: {
@@ -18,10 +18,11 @@ export default class UserList extends React.Component {
             sortedData: [],
             filteredData: [],
             user: [],
-            totalUsersForPG: []
+            showPagination: false
         }
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.handleActivePage = this.handleActivePage.bind(this);
     }
 
     componentDidMount() {
@@ -33,14 +34,20 @@ export default class UserList extends React.Component {
         // console.log('componentWillReceiveProps');
         // console.log('USER LIST NEXT PROPS: ',nextProps);
         let paginationUsers= [];
-        let totalUsersPG = [];
+        let showP = false;
         if(nextProps.users.length > 0) {
             paginationUsers = nextProps.users.slice(this.state.activePage*this.state.usersPerPage-this.state.usersPerPage,
                 this.state.activePage*this.state.usersPerPage, []);
+            if(this.state.usersPerPage >= nextProps.users.length){
+                showP = true
+            } else {
+                showP = false
+            }
         }
         this.setState({
             sortedData: paginationUsers,
-            filteredData: paginationUsers
+            filteredData: paginationUsers,
+            showPagination: showP
         })
     }
 
@@ -125,6 +132,16 @@ export default class UserList extends React.Component {
         this.handleClose();
     }
 
+    handleActivePage(pageNumber) {
+        let paginationUsers = [];
+        paginationUsers = this.props.users.slice(pageNumber*this.state.usersPerPage-this.state.usersPerPage,
+            pageNumber*this.state.usersPerPage, []);
+        this.setState({
+            activePage: pageNumber,
+            sortedData: paginationUsers
+        })
+    }
+
 
     render() {
         // console.log("USER LIST PROPS: ", this.props)
@@ -140,8 +157,8 @@ export default class UserList extends React.Component {
                                             <i className="material-icons p-1">supervisor_account</i> Pregled svih korisnika
                                             <span className="nav-link" style={{'position':'absolute', 'right':'0', 'marginTop':'-36px', 'fontSize':'15px'}}>
                                                 <i className="material-icons">search</i>
-                                                <input className="" type="text"  placeholder="  Name" 
-                                                    style={{'border':'0px','marginLeft':'5px', 'height':'26px', 'fontFamily':'Times New Roman', 'borderRadius': '2px'}} 
+                                                <input className="" type="text"  placeholder="Name"
+                                                    style={{'border':'0px','marginLeft':'5px', 'height':'26px', 'fontFamily':'Lucida Console, Monaco, monospace', 'borderRadius': '2px'}} 
                                                     onChange={this.searchByName}/>
                                             </span>
                                         </a>
@@ -155,7 +172,7 @@ export default class UserList extends React.Component {
                             <table className="table">
                                 <thead className=" text-primary">
                                     <tr>
-                                        <th onClick={this.onSort('id')}>
+                                        <th onClick={this.onSort('id')} style={{'cursor':'pointer'}}>
                                             <div style={{'marginBottom': '-5px', 'fontSize':'10px'}}>
                                                 <span className="fa fa-chevron-up" ></span> 
                                             </div>
@@ -165,7 +182,7 @@ export default class UserList extends React.Component {
                                             <p style={{'marginTop': '-25px', 'marginLeft': '16px'}}>User ID</p>
                                         </th>
 
-                                        <th className="sortable" onClick={this.onSort('name')}>
+                                        <th className="sortable" onClick={this.onSort('name')} style={{'cursor':'pointer'}}>
                                             <div style={{'marginBottom': '-5px', 'fontSize':'10px'}}>
                                                 <span className="fa fa-chevron-up" ></span> 
                                             </div>
@@ -174,7 +191,7 @@ export default class UserList extends React.Component {
                                             </div>
                                             <p style={{'marginTop': '-25px', 'marginLeft': '16px'}}>Ime</p>
                                         </th>
-                                        <th onClick={this.onSort('email')}>
+                                        <th onClick={this.onSort('email')} style={{'cursor':'pointer'}}>
                                             <div style={{'marginBottom': '-5px', 'fontSize':'10px'}}>
                                                 <span className="fa fa-chevron-up" ></span> 
                                             </div>
@@ -183,7 +200,7 @@ export default class UserList extends React.Component {
                                             </div>
                                             <p style={{'marginTop': '-25px', 'marginLeft': '16px'}}>E-mail</p>
                                         </th>
-                                        <th onClick={this.onSort('address')}>
+                                        <th onClick={this.onSort('address')} style={{'cursor':'pointer'}}>
                                             <div style={{'marginBottom': '-5px', 'fontSize':'10px'}}>
                                                 <span className="fa fa-chevron-up" ></span> 
                                             </div>
@@ -215,18 +232,26 @@ export default class UserList extends React.Component {
                     </div>
                 </div>
 
+                    {
+                        this.state.showPagination
+                        ?
+                        ""
+                        :
+                        <div className="pagination-centred">
+                        {/* react-js-pagination */}
+                        <Pagination className="pagination" 
+                            activePage={this.state.activePage}
+                            itemsCountPerPage={this.state.usersPerPage}
+                            totalItemsCount={this.props.users.length}
+                            pageRangeDisplayed={5}
+                            onChange={this.handleActivePage}
+                            hideDisabled
+                        />
+                        </div>
+                    }
 
-                <div className="pagination-centred">
-                    {/* react-js-pagination */}
-                    <Pagination className="pagination" 
-                        activePage={this.state.activePage}
-                        itemsCountPerPage={15}
-                        totalItemsCount={this.props.users.length}
-                        pageRangeDisplayed={5}
-                        onChange={this.handleActivePage}
-                    />
 
-                </div>
+
 
                 <Modal open={this.state.showModal} onClose={this.handleClose} 
                     style={{'height': '300px', 'width': '400px'}}>

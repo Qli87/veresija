@@ -12,12 +12,13 @@ export default class AccountList extends React.Component {
         super(props);
         this.state = {
             activePage : 1,
-            accountsPerPage: 15,
+            accountsPerPage: 2,
             numberOfPages : 5,
             showModal: false,
             account: [],
             sortedData: [],
             filteredData: [],
+            showPagination: false,
             sort: {
                 column: null,
                 direction: 'desc'
@@ -31,20 +32,32 @@ export default class AccountList extends React.Component {
     componentWillReceiveProps(nextProps) {
         // console.log('nextProps: ',nextProps)
         let paginationAccounts = [];
+        let showP = false;
             if(nextProps.accounts.length > 0) {
                 paginationAccounts = nextProps.accounts.slice(this.state.activePage*this.state.accountsPerPage-this.state.accountsPerPage,
                     this.state.activePage*this.state.accountsPerPage, []);
+                if(this.state.accountsPerPage >= nextProps.accounts.length){
+                    showP = true
+                } else {
+                    showP = false
+                }
             }
         this.setState({
             sortedData: paginationAccounts,
-            filteredData: paginationAccounts
+            filteredData: paginationAccounts,
+            showPagination: showP
         })
     }
 
 
     handleActivePage(pageNumber) {
+        console.log('page number: ',pageNumber)
+        let paginationAccounts = []
+        paginationAccounts = this.props.accounts.slice(pageNumber*this.state.accountsPerPage-this.state.accountsPerPage,
+            pageNumber*this.state.accountsPerPage, []);
         this.setState({
-            activePage: pageNumber
+            activePage: pageNumber,
+            sortedData: paginationAccounts
         })
     }
 
@@ -128,6 +141,7 @@ export default class AccountList extends React.Component {
     
 
     render() {
+        console.log("active page: ",this.state.activePage)
         return (
             <div>
                 <div className="card">
@@ -140,8 +154,8 @@ export default class AccountList extends React.Component {
                                             <i className="material-icons p-1">access_time</i> Pregled svih zaduzenja
                                             <span className="nav-link" style={{'position':'absolute', 'right':'0', 'marginTop':'-36px', 'fontSize':'15px'}}>
                                                 <i className="material-icons">search</i>
-                                                <input className="" type="text"  placeholder="  Name" 
-                                                    style={{'border':'0px','marginLeft':'5px', 'height':'26px', 'fontFamily':'Times New Roman', 'borderRadius': '2px'}} 
+                                                <input className="" type="text"  placeholder="Name" 
+                                                    style={{'border':'0px','marginLeft':'5px', 'height':'26px', 'fontFamily':'Lucida Console, Monaco, monospace', 'borderRadius': '2px'}} 
                                                     onChange={this.searchByName}/>
                                             </span>
                                         </a>
@@ -155,7 +169,7 @@ export default class AccountList extends React.Component {
                             <table className="table">
                                 <thead className=" text-primary">
                                     <tr>
-                                        <th onClick={this.onSort('accountId')}>
+                                        <th onClick={this.onSort('accountId')} style={{'cursor':'pointer'}}>
                                             <div style={{'marginBottom': '-5px', 'fontSize':'10px'}}>
                                                 <span className="fa fa-chevron-up" ></span> 
                                             </div>
@@ -164,7 +178,7 @@ export default class AccountList extends React.Component {
                                             </div>
                                             <p style={{'marginTop': '-25px', 'marginLeft': '16px'}}>Account ID</p>
                                         </th>
-                                        <th onClick={this.onSort('name')}>
+                                        <th onClick={this.onSort('name')} style={{'cursor':'pointer'}}>
                                             <div style={{'marginBottom': '-5px', 'fontSize':'10px'}}>
                                                 <span className="fa fa-chevron-up" ></span> 
                                             </div>
@@ -173,7 +187,7 @@ export default class AccountList extends React.Component {
                                             </div>
                                             <p style={{'marginTop': '-25px', 'marginLeft': '16px'}}>Ime i prezime</p>
                                         </th>
-                                        <th onClick={this.onSort('phone')}>
+                                        <th onClick={this.onSort('phone')} style={{'cursor':'pointer'}}>
                                             <div style={{'marginBottom': '-5px', 'fontSize':'10px'}}>
                                                 <span className="fa fa-chevron-up" ></span> 
                                             </div>
@@ -182,7 +196,7 @@ export default class AccountList extends React.Component {
                                             </div>
                                             <p style={{'marginTop': '-25px', 'marginLeft': '16px'}}>Telefon</p>
                                         </th>
-                                        <th onClick={this.onSort('total')}>
+                                        <th onClick={this.onSort('total')} style={{'cursor':'pointer'}}>
                                             <div style={{'marginBottom': '-5px', 'fontSize':'10px'}}>
                                                 <span className="fa fa-chevron-up" ></span> 
                                             </div>
@@ -191,7 +205,7 @@ export default class AccountList extends React.Component {
                                             </div>
                                             <p style={{'marginTop': '-25px', 'marginLeft': '16px'}}>Ukupno</p>
                                         </th>
-                                        <th onClick={this.onSort('numberOfPayment')}>
+                                        <th onClick={this.onSort('numberOfPayment')} style={{'cursor':'pointer'}}>
                                             <div style={{'marginBottom': '-5px', 'fontSize':'10px'}}>
                                                 <span className="fa fa-chevron-up" ></span> 
                                             </div>
@@ -200,7 +214,7 @@ export default class AccountList extends React.Component {
                                             </div>
                                             <p style={{'marginTop': '-25px', 'marginLeft': '16px'}}>Br.rata</p>
                                         </th>
-                                        <th onClick={this.onSort('monthly')}>
+                                        <th onClick={this.onSort('monthly')} style={{'cursor':'pointer'}}>
                                             <div style={{'marginBottom': '-5px', 'fontSize':'10px'}}>
                                                 <span className="fa fa-chevron-up" ></span> 
                                             </div>
@@ -236,19 +250,34 @@ export default class AccountList extends React.Component {
                     </div>
                 </div>
 
-
-                <div className="pagination-centred">
-                    {/* react-js-pagination */}
-                    {/* className="pagination" */}
+                 {
+                    this.state.showPagination
+                    ?
+                    ""
+                    :
+                    <div className="pagination-centred">
                     <Pagination  
                         activePage={this.state.activePage}
-                        itemsCountPerPage={5}
+                        itemsCountPerPage={this.state.accountsPerPage}
                         totalItemsCount={this.props.accounts.length}
                         pageRangeDisplayed={5}
                         onChange={this.handleActivePage}
+                        hideDisabled
                     />
+                    </div>
+                } 
 
-                </div>
+                {/* <div className="pagination-centred">
+                    <Pagination  
+                        activePage={this.state.activePage}
+                        itemsCountPerPage={this.state.accountsPerPage}
+                        totalItemsCount={this.props.accounts.length}
+                        pageRangeDisplayed={5}
+                        onChange={this.handleActivePage}
+                        hideDisabled
+                    />
+                    </div> */}
+
 
                 <Modal open={this.state.showModal} onClose={this.handleClose} 
                     style={{'height': '300px', 'width': '400px'}}>

@@ -17,13 +17,12 @@ class User extends React.Component {
     // }
 
     handleClickDetails(user_id) {
-        let path = '/userDetails/'+user_id;
+        let path = '/detaljiKorisnika/'+user_id;
         this.props.history.push(path);
     }
 
     handleClickEdit(user_id) {
-        console.log('edit:' ,user_id)
-        let path = '/userEdit/'+user_id;
+        let path = '/izmjeniKorisnika/'+user_id;
         this.props.history.push(path);
     }
 
@@ -34,7 +33,7 @@ class User extends React.Component {
     // }
 
     handleHistoryForUser(user_id) {
-        let path = '/userHistory/'+user_id
+        let path = '/istorijaKorisnika/'+user_id
         this.props.history.push(path)
     }
 

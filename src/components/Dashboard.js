@@ -66,7 +66,7 @@ export default class Dashboard extends React.Component {
                     <div className="card-footer">
                         <div className="stats">
                             <i className="material-icons text-danger">warning</i>
-                            <a href="#pablo">Mjesecna dugovanja</a>
+                            <a href="#pablo">Mjesečna dugovanja</a>
                         </div>
                     </div>
                 </div>
@@ -97,12 +97,12 @@ export default class Dashboard extends React.Component {
                     <div className="card-header card-header-tabs card-header-primary">
                             
                         <h4 className="card-title">
-                            <a href="accountList">
-                               <i className="material-icons">home</i> Zaduzenja
+                            <a href="listaZaduzenja" title="Lista zaduzenja">
+                               <i className="material-icons">home</i> Zaduženja
                             </a>
                         </h4>
                         <p className="card-category"><i className="material-icons">fiber_new</i>
-                         Nova zaduzenja</p>
+                         Nova zaduženja</p>
                     </div>
                     <div className="card-body table-responsive">
                         <table className="table table-hover">
@@ -136,7 +136,7 @@ export default class Dashboard extends React.Component {
                 <div className="card">
                     <div className="card-header card-header-warning">
                         <h4 className="card-title">
-                            <a href="userList">
+                            <a href="listaKorisnika" title="Lista korisnika">
                                 <i className="material-icons">person_pin</i> Korisnici
                             </a>
                         </h4>

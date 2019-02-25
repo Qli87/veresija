@@ -40,49 +40,50 @@ const routes = [
   //   main: () => <div> <Login /> </div>
   // },
   {
-    path: "/userList",
+    path: "/listaKorisnika",
     main: () => <div > 
         <GetUsers /> 
       </div>
   },
   {
-    path: "/userAdd",
+    //dodajKorniska url
+    path: "/dodajKorisnika",
     main: () => <div> <AddUser /> </div>
   },
   {
-    path: "/userDetails/:id?",
+    path: "/detaljiKorisnika/:id?",
     main: ({match}) => <div> <GetUserDetails user_id={match.params} /> </div>
   },
   {
-    path: "/userEdit/:id?",
+    path: "/izmjeniKorisnika/:id?",
     main: ({match}) => <div> <GetUserEdit user_id={match.params} /> </div>
   },
   {
-    path: "/accountList",
+    path: "/listaZaduzenja",
     main: () => <div> <GetAccounts /> </div>
   },
   {
-    path: "/accountAdd",
+    path: "/dodajZaduzenje",
     main: () => <div> <AddAccount /> </div>
   },
   {
-    path: "/accountDetails/:id?",
+    path: "/detaljiZaduzenja/:id?",
     main: ({match}) => <div> <GetAccountDetails account_id={match.params}/> </div>
   },
   {
-    path: "/debtPayment/:id?",
+    path: "/uplataZaduzenja/:id?",
     main: ({match}) => <div> <AddDebtPayment account_id={match.params} /> </div>
   },
   {
-    path: "/accountHistory/:id?",
+    path: "/istorijaZaduzenja/:id?",
     main: ({match}) => <div> <HistoryAccount account_id={match.params} /> </div>
   },
   {
-    path: '/userHistory/:id?',
+    path: '/istorijaKorisnika/:id?',
     main: ({match}) => <div> <HistoryUser user_id={match.params}/> </div>
   },
   {
-    path: "/accountEdit/:id?",
+    path: "/izmjeniZaduzenje/:id?",
     main: ({match}) => <div> <GetAccountEdit account_id={match.params}/> </div>
   }
 
@@ -113,7 +114,8 @@ class App extends Component {
     <Clock format={'HH:mm:ss'} ticking={true} timezone={'US/Pacific'} />
     return (
       <Router>
-        <div className="container-fluid" style={{'backgroundColor': '#f1f1f1', 'height':'100%', 'width':'100%', 'minHeight':'100%', 'position': 'relative'}}>
+        <div className="container-fluid" 
+            style={{'backgroundColor': '#f1f1f1', 'height':'100%', 'width':'100%', 'minHeight':'100%', 'position': 'relative'}}>
           <div className="row" >
             <Sidebar />
             <div className="col-lg-9 offset-3 col-sm-11 pt-3">

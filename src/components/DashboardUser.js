@@ -8,12 +8,12 @@ class DashboardUser extends React.Component {
     }
 
     handleClickUser(user_id) {
-        let path = '/userEdit/'+user_id;
+        let path = '/izmjeniKorisnika/'+user_id;
         this.props.history.push(path)
     }
     render() {
         return(
-            <tr onClick={() => this.handleClickUser(this.props.user_id)}>
+            <tr onClick={() => this.handleClickUser(this.props.user_id)} title="Izmjeni korisnika" style={{'cursor':'pointer'}}>
                 <td>{this.props.name}</td>
                 <td>{this.props.phone.slice(0,9)}</td>
                 <td>{this.props.email}</td>

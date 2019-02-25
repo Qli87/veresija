@@ -13,7 +13,8 @@ class MainApp extends React.Component {
     render() {
         return(
             <Router>
-                <div className="container-fluid">
+                {/* Lucida Console, Monaco, monospace */}
+                <div className="container-fluid" style={{'fontFamily':'Arial'}}>
                    <Route path='/login' component={Login} />
                    <PrivateRoute path='/' component={App} />
                 </div>

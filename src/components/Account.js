@@ -18,22 +18,22 @@ class Account extends React.Component {
 
 
     handleClickDetails(account_id) {
-        let path = '/accountDetails/'+account_id;
+        let path = '/detaljiZaduzenja/'+account_id;
         this.props.history.push(path);
     }
 
     handleClickEdit(account_id) {
-        let path = '/accountEdit/'+account_id;
+        let path = '/izmjeniZaduzenje/'+account_id;
         this.props.history.push(path);
     }
 
     handleClickDebtPayment(account_id) {
-        let path = '/debtPayment/'+account_id;
+        let path = '/uplataZaduzenja/'+account_id;
         this.props.history.push(path)
     }
 
     handleClickHistory(account_id) {
-        let path = '/accountHistory/'+account_id;
+        let path = '/istorijaZaduzenja/'+account_id;
         this.props.history.push(path)
     }
 

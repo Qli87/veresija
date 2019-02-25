@@ -23,33 +23,33 @@ export default class Sidebar extends React.Component {
                     <li >
                         <NavLink to="/" exact={true} className="nav-link"  activeStyle={{ 'backgroundColor': '#9c27b0', 'color':'white', 'fontWeight':'bold'}}>
                             <i className="material-icons">dashboard</i>
-                            <p>Pocetna</p>
+                            <p>Početna</p>
                         </NavLink>
                     </li>
                     <li >
-                        <NavLink to="/userList" exact={true} className="nav-link" activeStyle={{ 'backgroundColor': '#9c27b0', 'color':'white','fontWeight':'bold'}}>
+                        <NavLink to="/listaKorisnika" exact={true} className="nav-link" activeStyle={{ 'backgroundColor': '#9c27b0', 'color':'white','fontWeight':'bold'}}>
                             <i className="material-icons">person</i>
                             <p>Lista korisnika</p>
                         </NavLink>
                     </li>
 
                     <li className="nav-item ">
-                        <NavLink to="/userAdd" className="nav-link" activeStyle={{ 'backgroundColor': '#9c27b0', 'color':'white','fontWeight':'bold' }}>
+                        <NavLink to="/dodajKorisnika" className="nav-link" activeStyle={{ 'backgroundColor': '#9c27b0', 'color':'white','fontWeight':'bold' }}>
                             <i className="material-icons">person_add</i>
                             <p>Dodaj korisnika</p>
                         </NavLink>
                     </li>
 
                     <li className="nav-item ">
-                        <NavLink to="/accountList" className="nav-link" activeStyle={{ 'backgroundColor': '#9c27b0', 'color':'white','fontWeight':'bold' }}>
+                        <NavLink to="/listaZaduzenja" className="nav-link" activeStyle={{ 'backgroundColor': '#9c27b0', 'color':'white','fontWeight':'bold' }}>
                             <i className="material-icons">note</i>
-                            <p>Lista zaduzenja</p>
+                            <p>Lista zaduženja</p>
                         </NavLink>
                     </li>
                     <li className="nav-item ">
-                        <NavLink to="/accountAdd" className="nav-link" activeStyle={{ 'backgroundColor': '#9c27b0', 'color':'white','fontWeight':'bold'}}>
+                        <NavLink to="/dodajZaduzenje" className="nav-link" activeStyle={{ 'backgroundColor': '#9c27b0', 'color':'white','fontWeight':'bold'}}>
                             <i className="material-icons">note_add</i>
-                            <p>Dodaj zaduzenje</p>
+                            <p>Dodaj zaduženje</p>
                         </NavLink>
                     </li>
                 </ul>

@@ -47,24 +47,24 @@ export function* editAccountSaga(action) {
     console.log('saga edit account: ',action.payload)
     const response = yield call(api_editAccount, action.payload);
     if(!response || !response.data){
-        return yield put(editAccount_error("Internal server error"));
+        return yield put(editAccount_error("Internal server error edit account saga"));
     }
     if(response.status === 200){
         return yield editAccount_success(action.payload);
     } else {
-        return yield put(editAccount_error('Error'));
+        return yield put(editAccount_error('Error edit account saga'));
     }
 }
 
 export function* fetchUsersForSelectSaga() {
     const response = yield call(api_usersForSelect);
     if(!response || !response.data){
-        return yield put(fetchUsersForSelectFaild('Internal server error'))
+        return yield put(fetchUsersForSelectFaild('Internal server error fetch users for select saga'))
     }
     if(response.status === 200){
         return yield put(fetchUsersForSelectSuccess(response.data))
     } else {
-        return yield put(fetchUsersForSelectFaild('error'))
+        return yield put(fetchUsersForSelectFaild('Error fetch users for select saga'))
     }
 }
 
@@ -72,12 +72,12 @@ export function* fetchUsersForSelectSaga() {
 export function* fetchUsersForDashboardSaga() {
     const response = yield call(api_fetchUsersForDashboard);
     if(!response || !response.data) {
-        return yield put(fetchUsersForDashboard_error("Internal server error"))
+        return yield put(fetchUsersForDashboard_error("Internal server error fetch users for dashboard saga"))
     }
     if(response.status === 200){
         return yield put(fetchUsersForDashboard_success(response.data))
     } else {
-        return yield put(fetchUsersForDashboard_error('error'))
+        return yield put(fetchUsersForDashboard_error('error fetch users for dashboard saga'))
     }
 }
 
@@ -87,14 +87,14 @@ export function* addUserSaga(action) {
     console.log('response:',response);
     if(!response || !response.data){
         console.log('error1')
-        return yield put(addUser_error("Internal server error"))
+        return yield put(addUser_error("Internal server error add user saga"))
     }
     if(response.status === 200){
         console.log('status 200')
         return yield put(addUser_success(response.data))
     } else {
         console.log('error2')
-        return yield put(addUser_error('error'))
+        return yield put(addUser_error('error add user saga'))
     }
 }
 
@@ -102,14 +102,14 @@ export function* editUserSaga(action) {
     // console.log('edit saga action: ',action);
     const response = yield call(api_editUser, action.payload);
     if(!response || !response.data){
-        return yield put(editUser_error("Internal server error"));
+        return yield put(editUser_error("Internal server error edit user saga"));
     }
     if(response.status === 200){
         // console.log('status === 200');
         return yield editUser_success(action.payload);
     } else {
         // console.log('status !== 200');
-        return yield put(editUser_error('Error'));
+        return yield put(editUser_error('Error edit user saga'));
     }
 }
 
@@ -118,26 +118,26 @@ export function* deleteUserSaga(action) {
     const response = yield call(api_deleteUser, action.payload);
     if(!response || !response.data) {
         console.log('Internal server error');
-        return yield put(deleteUser_error('Internal server error'));
+        return yield put(deleteUser_error('Internal server error delete user saga'));
     }
     if(response.status === 200) {
         console.log('status 200');
         return yield put(deleteUser_success(action.payload))
     } else {
         console.log('status !== 200')
-        return yield put(deleteUser_error('Error'));
+        return yield put(deleteUser_error('Error delete user saga'));
     }
 }
 
 export function* fetchHistoryForUserSaga(action) {
     const response = yield call(api_fetchHistoryForUser, action.payload)
     if(!response || !response.data) {
-        return yield put(fetchHistoryForUser_faild('Internal server error'))
+        return yield put(fetchHistoryForUser_faild('Internal server error fetch history for user saga'))
     }
     if(response.status === 200){
         return yield put(fetchHistoryForUser_success(response.data))
     } else {
-        return yield put(fetchHistoryForUser_faild('error'))
+        return yield put(fetchHistoryForUser_faild('error fetch history for user saga'))
     }
 }
 
@@ -145,14 +145,14 @@ export function* loginSaga(action) {
     let {name, password} = action.payload;
     const response = yield call(api_loginRequest, name, password);
     if(!response || !response.data) {
-        return yield put(loginError('Internal server error'));
+        return yield put(loginError('Internal server error login saga'));
     }
     if(response.status === 200){
         console.log('response.data: ', response.data);
         // sessionStorage.setItem('token', response.data.token);
         return yield put(loginSuccess(response.data))
     } else {
-        return yield put(loginError('error'));
+        return yield put(loginError('error login saga'));
     }
 }
     
@@ -160,7 +160,7 @@ export function* loginSaga(action) {
 export function* fetchAccounts() {
     const response = yield call(api_fetchAccounts);
       if(!response || !response.data) {
-          return yield put(fetchAccountsFaild("Internal server error"))
+          return yield put(fetchAccountsFaild("Internal server error fetch accounts"))
       }
       if(response.status === 200) {
         return yield put(fetchAccountsSuccess(response.data))
@@ -174,12 +174,12 @@ export function* fetchAccounts() {
 export function* fetchAccountsForDashboardSaga() {
     const response = yield call(api_fetchAccountsForDashboard);
     if(!response || !response.data){
-        return yield put(fetchAccountsForDashboard_error("Internal server error"))
+        return yield put(fetchAccountsForDashboard_error("Internal server error fetch accounts for dashboard saga"))
     }
     if(response.status === 200){
         return yield put(fetchAccountsForDashboard_success(response.data))
     } else {
-        return yield put(fetchAccountsForDashboard_error('error'))
+        return yield put(fetchAccountsForDashboard_error('error fetch accounts for dashboard saga'))
     }
 }
 
@@ -187,7 +187,7 @@ export function* fetchHistoryForAccountSaga(action) {
     const response = yield call(api_fetchHistoryForAccount, action.payload)
     // console.log('SAGA RESPONSE: ', response.data)
     if(!response || !response.data){
-        return yield put(fetchHistoryForAccount_faild("Internal server error"))
+        return yield put(fetchHistoryForAccount_faild("Internal server error fetch history for account saga"))
     }
     if(response.status === 200){
         return yield put(fetchHistoryForAccount_success(response.data))
@@ -201,14 +201,14 @@ export function* deleteAccountSaga(action) {
     const response = yield call(api_deleteAccount, action.payload);
     if(!response || !response.data) {
         console.log('Internal server error');
-        return yield put(deleteAccount_error('Internal server error'));
+        return yield put(deleteAccount_error('Internal server error delete account saga'));
     }
     if(response.status === 200) {
         console.log('status 200');
         return yield put(deleteAccount_success(action.payload))
     } else {
         console.log('status !== 200')
-        return yield put(deleteAccount_error('Error'));
+        return yield put(deleteAccount_error('Error delete account saga'));
     }
 }
 
@@ -217,7 +217,7 @@ export function* fetchUsers() {
     const response = yield call(api_fetchUsers);
     // console.log('REPSONSE: ', response);    
         if(!response || !response.data) {
-            return yield put(fetchUsersFaild("Internal server error"))
+            return yield put(fetchUsersFaild("Internal server error fetch users"))
         }
         // console.log('RESPONSE STATUS: ', response.status)
         if(response.status === 200) {
@@ -233,7 +233,7 @@ export function* fetchUsers() {
 export function* fetchUsersForAccount() {
     const response = yield call(api_fetchUsers);
     if(!response || !response.data) {
-        return yield put(fetchUsersFaild("Internal server error"))
+        return yield put(fetchUsersFaild("Internal server error fetch users for account"))
     }
     if(response.status === 200) {
         return yield put(fetchUsersSuccess(response.data))

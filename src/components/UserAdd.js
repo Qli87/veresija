@@ -159,7 +159,7 @@ export default class UserAdd extends React.Component {
                                     <div className="row">
                                         <div className="p-3">
                                             <button onClick={this.sbForm}
-                                                 className="btn btn-primary pull-right">Sacuvaj</button>
+                                                 className="btn btn-primary pull-right">Sačuvaj</button>
                                         </div>
                                     </div>
 
