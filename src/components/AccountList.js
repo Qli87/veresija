@@ -51,7 +51,6 @@ export default class AccountList extends React.Component {
 
 
     handleActivePage(pageNumber) {
-        console.log('page number: ',pageNumber)
         let paginationAccounts = []
         paginationAccounts = this.props.accounts.slice(pageNumber*this.state.accountsPerPage-this.state.accountsPerPage,
             pageNumber*this.state.accountsPerPage, []);
@@ -141,7 +140,6 @@ export default class AccountList extends React.Component {
     
 
     render() {
-        console.log("active page: ",this.state.activePage)
         return (
             <div>
                 <div className="card">
@@ -263,6 +261,7 @@ export default class AccountList extends React.Component {
                         pageRangeDisplayed={5}
                         onChange={this.handleActivePage}
                         hideDisabled
+                        activeClass="activeClassPagination"
                     />
                     </div>
                 } 

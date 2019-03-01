@@ -24,6 +24,8 @@ class UserEdit extends React.Component {
         this.handleChangeEmail = this.handleChangeEmail.bind(this);
         this.handleChangeAddress = this.handleChangeAddress.bind(this);
         this.saveEdit = this.saveEdit.bind(this);
+        this.backClick = this.backClick.bind(this); 
+
     }
 
     componentDidMount() {
@@ -32,7 +34,6 @@ class UserEdit extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log('nextProps:', nextProps)
         this.setState({
             //ovako treba da izgleda, kada se napravi server, validan api...
             // id: this.props.user_id.id,
@@ -55,7 +56,10 @@ class UserEdit extends React.Component {
         })
     }
 
-
+    backClick() {
+        let path = '/listaKorisnika';
+        this.props.history.push(path);
+    }
 
     handleChangeFirstName(e) {
         this.setState({
@@ -113,10 +117,19 @@ class UserEdit extends React.Component {
                 <div className='col-lg-12 col-md-10 col-sm-12'> 
                     <div className="card">
                         <div className="card-header card-header-primary">
-                            <h4 className="card-title">Korisnik</h4>
-                            <p className="card-category">Unesite trazena informacije</p>
-                        </div>
-                        
+                        <div className="nav-tabs-navigation">
+                            <div className="nav-tabs-wrapper">
+                                <ul className="nav">
+                                    <li className="nav-item">  
+                                        <a className="nav-link" >
+                                            <i className="material-icons" title="Nazad" onClick={this.backClick} style={{'cursor':'pointer'}}>keyboard_backspace</i>
+                                            <i className="material-icons p-1 ml-3">person</i> Izmjeni korisnika:
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                         </div>
+                        </div> 
                         <div className="card-body" >
                             <form className="form">
                                 <div className="row">

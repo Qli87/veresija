@@ -1,19 +1,26 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 
 
-export default class Account_debtPayment extends React.Component {
+class Account_debtPayment extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             debtPayment: 0
         }
         this.handleDebtPayment = this.handleDebtPayment.bind(this)
+        this.backClick = this.backClick.bind(this)
     }
 
     handleDebtPayment(e) {
         this.setState({
             debtPayment: parseFloat(e.target.value)
         })
+    }
+
+    backClick() {
+        let path = "/listaZaduzenja";
+        this.props.history.push(path);
     }
 
     componentDidMount() {
@@ -29,8 +36,21 @@ export default class Account_debtPayment extends React.Component {
                     <div className='col-lg-9 offset-1 col-md-12 col-sm-12'> 
                         <div className="card">
                             <div className="card-header card-header-primary">
-                                <h4 className="card-title">Unos rate</h4>
-                                <p className="card-category">Unesite tacan iznos rate u polju "Iznos rate"</p>
+                                {/* <h4 className="card-title">Unos rate</h4>
+                                <p className="card-category">Unesite tacan iznos rate u polju "Iznos rate"</p> */}
+                                <div className="nav-tabs-navigation">
+                                    <div className="nav-tabs-wrapper">
+                                        <ul className="nav">
+                                            <li className="nav-item">  
+                                                <a className="nav-link">
+                                                    <i className="material-icons" title="Nazad" onClick={this.backClick} style={{'cursor':'pointer'}}>keyboard_backspace</i>
+                                                    {/* DODATI USER NAMA */}
+                                                    <i className="material-icons p-1 ml-3">access_time</i> Unesite trazene informacije za uplatu rate
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                             
                             <div className="card-body" >
@@ -133,3 +153,5 @@ export default class Account_debtPayment extends React.Component {
         )
     }
 }
+
+export default withRouter(Account_debtPayment)

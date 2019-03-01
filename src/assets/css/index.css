@@ -3603,7 +3603,7 @@ tbody.collapse.show {
 }
 
   .pagination a {
-    color: black;
+    color: gray;
     float: left;
     padding: 8px 16px;
     text-decoration: none;
@@ -3612,8 +3612,9 @@ tbody.collapse.show {
 
 
 
-.pagination a:hover:not(.active) {background-color: purple; color:white; text-decoration:none;
+.pagination a:hover:not(.active) {background-color: #c5e3ed; color:white; text-decoration:none;
  }
+
 
 
 .pagination a:first-child {

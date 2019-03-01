@@ -1,14 +1,21 @@
 import React, { Component } from 'react'
 import Select from 'react-select';
+import { withRouter } from 'react-router-dom'
 
 
-export default class AccountDetails extends React.Component {
+class AccountDetails extends React.Component {
     constructor(props) {
         super(props);
+        this.backClick = this.backClick.bind(this);
     }
 
     componentDidMount() {
         this.props.fetchAccountDetails(this.props.account_id.id);
+    }
+
+    backClick() {
+      let path="/listaZaduzenja";
+      this.props.history.push(path);
     }
 
     render() {
@@ -20,8 +27,20 @@ export default class AccountDetails extends React.Component {
                 <div className='col-lg-9 offset-1 col-md-12 col-sm-12'> 
                     <div className="card">
                         <div className="card-header card-header-primary">
-                            <h4 className="card-title">Zaduzenje</h4>
-                            <p className="card-category">Unesite trazena informacije</p>
+                            {/* <h4 className="card-title">Zaduzenje</h4>
+                            <p className="card-category">Unesite trazena informacije</p> */}
+                                  <div className="nav-tabs-navigation">
+                                    <div className="nav-tabs-wrapper">
+                                        <ul className="nav">
+                                            <li className="nav-item">  
+                                                <a className="nav-link">
+                                                    <i className="material-icons" title="Nazad" onClick={this.backClick} style={{'cursor':'pointer'}}>keyboard_backspace</i>
+                                                    <i className="material-icons p-1 ml-3">access_time</i> Detalji zaduzenja
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                         </div>
                         
                         <div className="card-body" >
@@ -111,3 +130,5 @@ export default class AccountDetails extends React.Component {
         )
     }
 }
+
+export default withRouter(AccountDetails)

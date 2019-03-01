@@ -1,8 +1,9 @@
 import React from 'react'
 import ImageUploader from 'react-images-upload'
+import { withRouter } from 'react-router-dom'
 
 
-export default class UserAdd extends React.Component {
+class UserAdd extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -21,6 +22,13 @@ export default class UserAdd extends React.Component {
         this.handleChangeEmail = this.handleChangeEmail.bind(this)
         this.sbForm = this.sbForm.bind(this)
         this.onDrop = this.onDrop.bind(this);
+        this.backClick = this.backClick.bind(this); 
+
+    }
+
+    backClick() {
+        let path = '/listaKorisnika';
+        this.props.history.push(path);
     }
 
     onDrop(picture) {
@@ -71,10 +79,20 @@ export default class UserAdd extends React.Component {
                 <div className="row">
                     <div className='col-lg-12 col-md-10 col-sm-12'> 
                         <div className="card">
-                            <div className="card-header card-header-primary">
-                                <h4 className="card-title">Korisnik</h4>
-                                <p className="card-category">Unesite trazena informacije</p>
+                        <div className="card-header card-header-primary">
+                            <div className="nav-tabs-navigation">
+                                <div className="nav-tabs-wrapper">
+                                    <ul className="nav">
+                                        <li className="nav-item">  
+                                            <a className="nav-link" >
+                                                <i className="material-icons" title="Nazad" onClick={this.backClick} style={{'cursor':'pointer'}}>keyboard_backspace</i>
+                                                <i className="material-icons p-1 ml-3">person_add</i> Dodaj korisnika:
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
+                        </div> 
                             
                             <div className="card-body" >
                                 <form className="form">
@@ -181,3 +199,5 @@ export default class UserAdd extends React.Component {
         )
     }
 }
+
+export default withRouter(UserAdd)

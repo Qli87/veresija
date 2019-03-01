@@ -1,7 +1,9 @@
 import React from 'react'
 import UserHistoryItem from './UserHistoryItem';
+import { withRouter } from 'react-router-dom'
 
-export default class UserHistory extends React.Component {
+
+class UserHistory extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -9,6 +11,12 @@ export default class UserHistory extends React.Component {
             sumDebitPayment: 0,
             total: 0
         }
+        this.backClick = this.backClick.bind(this)
+    }
+
+    backClick() {
+        let path = '/listaKorisnika';
+        this.props.history.push(path);
     }
 
     componentDidMount() {
@@ -40,8 +48,9 @@ export default class UserHistory extends React.Component {
                         <div className="nav-tabs-wrapper">
                             <ul className="nav">
                                 <li className="nav-item">  
-                                    <a className="nav-link">
-                                        <i className="material-icons p-1">access_time</i> Istorija placanja za korisnika: #{this.props.accounts.userId}
+                                    <a className="nav-link" >
+                                        <i className="material-icons" title="Nazad" onClick={this.backClick} style={{'cursor':'pointer'}}>keyboard_backspace</i>
+                                        <i className="material-icons p-1 ml-3">access_time</i> Istorija placanja za korisnika: #{this.props.accounts.userId}
                                     </a>
                                 </li>
                             </ul>
@@ -83,3 +92,5 @@ export default class UserHistory extends React.Component {
         )
     }
 }
+
+export default withRouter(UserHistory)

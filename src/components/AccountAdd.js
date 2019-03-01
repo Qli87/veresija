@@ -3,11 +3,10 @@ import { fetchUsers } from '../actions'
 import SelectSearch from 'react-select-search';
 import { Dropdown } from 'semantic-ui-react';
 import Select from 'react-select';
+import { withRouter } from 'react-router-dom'
 
 
-
-
-export default class AccoundAdd extends React.Component {
+class AccoundAdd extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -27,6 +26,7 @@ export default class AccoundAdd extends React.Component {
         // this.handleChangeMonthlyPayment = this.handleChangeMonthlyPayment.bind(this)
         this.handleChangeStartedPayment = this.handleChangeStartedPayment.bind(this)
         this.handleChangePayDebit = this.handleChangePayDebit.bind(this)
+        this.backClick = this.backClick.bind(this)
     }
 
     componentDidMount() {
@@ -42,6 +42,10 @@ export default class AccoundAdd extends React.Component {
       })
     }
 
+    backClick() {
+      let path = '/listaZaduzenja'
+      this.props.history.push(path);
+    }
 
     handleSelectUser(name) {
       this.setState({
@@ -102,8 +106,20 @@ export default class AccoundAdd extends React.Component {
                     <div className='col-lg-9 offset-1 col-md-12 col-sm-12'> 
                         <div className="card">
                             <div className="card-header card-header-primary">
-                                <h4 className="card-title">Zaduzenje</h4>
-                                <p className="card-category">Unesite trazena informacije</p>
+                                {/* <h4 className="card-title">Zaduzenje</h4>
+                                <p className="card-category">Unesite trazena informacije</p> */}
+                                <div className="nav-tabs-navigation">
+                                    <div className="nav-tabs-wrapper">
+                                        <ul className="nav">
+                                            <li className="nav-item">  
+                                                <a className="nav-link">
+                                                    <i className="material-icons" title="Nazad" onClick={this.backClick} style={{'cursor':'pointer'}}>keyboard_backspace</i>
+                                                    <i className="material-icons p-1 ml-3">access_time</i> Dodaj zaduzenje
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                             
                             <div className="card-body" >
@@ -210,3 +226,4 @@ export default class AccoundAdd extends React.Component {
     }
   }
 
+export default withRouter(AccoundAdd)

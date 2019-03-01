@@ -246,6 +246,7 @@ export default class UserList extends React.Component {
                             pageRangeDisplayed={5}
                             onChange={this.handleActivePage}
                             hideDisabled
+                            activeClass="activeClassPagination"
                         />
                         </div>
                     }
