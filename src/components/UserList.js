@@ -252,8 +252,6 @@ export default class UserList extends React.Component {
                     }
 
 
-
-
                 <Modal open={this.state.showModal} onClose={this.handleClose} 
                     style={{'height': '300px', 'width': '400px'}}>
                     <div className="card">

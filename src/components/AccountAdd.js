@@ -100,6 +100,8 @@ class AccoundAdd extends React.Component {
         var nOfP = parseFloat(this.state.numberOfPayment);
         var mPay = parseFloat(totalDebit/nOfP).toFixed(2);
 
+        console.log(this.state.users);
+
         return(
               <div className="container-fluid">
                 <div className="row">

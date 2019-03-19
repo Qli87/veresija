@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Account from './Account'
 import { fetchAccounts } from '../actions'
 
 import Pagination from 'react-js-pagination';
-import ReactPaginate from 'react-paginate';
+// import ReactPaginate from 'react-paginate';
 import Modal from 'react-responsive-modal';
 
 

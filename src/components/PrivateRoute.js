@@ -11,7 +11,7 @@ export default class PrivateRoute extends React.Component {
     }
 
     render() {
-        console.log('props in private: ',this.props)
+        // console.log('props in private: ',this.props)
         let Component = this.props.component;
         
         return (

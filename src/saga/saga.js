@@ -11,7 +11,8 @@ import { api_fetchUsers,
         api_fetchHistoryForAccount,
         api_fetchHistoryForUser,
         api_fetchUsersForDashboard,
-        api_fetchAccountsForDashboard
+        api_fetchAccountsForDashboard,
+        api_getTranslations
 } from '../api/Api';
 
 import {fetchAccountsSuccess, 
@@ -40,8 +41,23 @@ import {fetchAccountsSuccess,
         fetchUsersForDashboard_error,
         fetchUsersForDashboard_success,
         fetchAccountsForDashboard_error,
-        fetchAccountsForDashboard_success
+        fetchAccountsForDashboard_success,
+        getTranslations_error,
+        getTranslations_success
 } from '../actions'
+
+
+export function* getTranslationsSaga() {
+    const response = yield call(api_getTranslations);
+    if(!response || !response.data){
+        return yield put(getTranslations_error("Internal server error - getTranslations"))
+    }
+    if(response.status === 200){
+        return yield put(getTranslations_success(response.data))
+    } else {
+        return yield put(getTranslations_error("Error getTranslations"))
+    }
+}
 
 export function* editAccountSaga(action) {
     console.log('saga edit account: ',action.payload)
@@ -90,10 +106,8 @@ export function* addUserSaga(action) {
         return yield put(addUser_error("Internal server error add user saga"))
     }
     if(response.status === 200){
-        console.log('status 200')
         return yield put(addUser_success(response.data))
     } else {
-        console.log('error2')
         return yield put(addUser_error('error add user saga'))
     }
 }
@@ -257,5 +271,6 @@ export function* watchFetchAccounts() {
     yield takeEvery("FETCH_HISTORY_FOR_ACCOUNT", fetchHistoryForAccountSaga),
     yield takeEvery("FETCH_HISTORY_FOR_USER", fetchHistoryForUserSaga),
     yield takeEvery("FETCH_USERS_FOR_DASHBOARD", fetchUsersForDashboardSaga),
-    yield takeEvery("FETCH_ACCOUNTS_FOR_DASHBOARD", fetchAccountsForDashboardSaga)
+    yield takeEvery("FETCH_ACCOUNTS_FOR_DASHBOARD", fetchAccountsForDashboardSaga),
+    yield takeEvery("GET_TRANSLATIONS", getTranslationsSaga)
 }

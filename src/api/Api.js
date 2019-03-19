@@ -6,6 +6,12 @@ const instance = axios.create({
     baseURL: '/dsadad'
 });
 
+export function api_getTranslations() {
+    //http://www.mocky.io/v2/5c825f0131000042411d1db4 - json
+    //http://www.mocky.io/v2/5c821b8f310000a5211d1ba4 - react-localize-redux json example
+    return axios.get("http://www.mocky.io/v2/5c8a8ba72e00002700d64d0b");
+}
+
 export function api_fetchAccounts() {
     // return axios.get("https://jsonplaceholder.typicode.com/posts");
     return axios.get("http://www.mocky.io/v2/5c17e1872f00005400af0e26");

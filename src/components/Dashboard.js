@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import DashboardUser from './DashboardUser';
 import DashboardAccount from './DashboardAccount';
 
-export default class Dashboard extends React.Component {
+import { withLocalize } from "react-localize-redux";
+
+
+class Dashboard extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -171,3 +174,5 @@ export default class Dashboard extends React.Component {
         )
     }
 }
+
+export default withLocalize(Dashboard)

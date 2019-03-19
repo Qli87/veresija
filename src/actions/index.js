@@ -34,6 +34,30 @@ export const FETCH_USERS_FOR_DASHBOARD_ERROR = "FETCH_USERS_FOR_DASHBOARD_ERROR"
 export const FETCH_ACCOUNTS_FOR_DASHBOARD = "FETCH_ACCOUNTS_FOR_DASHBOARD"
 export const FETCH_ACCOUNTS_FOR_DASHBOARD_SUCCESS = "FETCH_ACCOUNTS_FOR_DASHBOARD_SUCCESS"
 export const FETCH_ACCOUNTS_FOR_DASHBOARD_ERROR = "FETCH_ACCOUNTS_FOR_DASHBOARD_ERROR"
+export const GET_TRANSLATIONS = "GET_TRANSLATIONS"
+export const GET_TRANSLATIONS_SUCCESS = "GET_TRANSLATIONS_SUCCESS"
+export const GET_TRANSLATIONS_ERROR = "GET_TRANSLATIONS_ERROR"
+
+export function getTranslations(trans) {
+    return {
+        type: "GET_TRANSLATIONS",
+        payload: trans
+    }
+}
+
+export function getTranslations_success(trans){
+    return {
+        type: "GET_TRANSLATIONS_SUCCESS",
+        payload: trans
+    }
+}
+
+export function getTranslations_error(error){
+    return {
+        type: "GET_TRANSLATIONS_ERROR",
+        payload: error
+    }
+}
 
 export function fetchAccounts(accounts) {
     return{
